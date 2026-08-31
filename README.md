@@ -1,31 +1,62 @@
-# برازنده — نسخه استاتیک دقیق UI (برای GitHub Pages)
+# قالب سایت فروشگاهی برازنده (نسخه استاتیک برای GitHub Pages)
 
-این پوشه، نسخه‌ی **استاتیک** و **بدون بک‌اند** از خودِ کدهای واقعی سایت شماست — همان تمپلیت‌ها، همان CSS/JS اصلی، همان هدر/فوتر/منوی پایین، فقط با داده‌های نمونه (فیک) به‌جای دیتابیس واقعی. پنل ادمین در این نسخه وجود ندارد.
+نسخه‌ی **استاتیک** و **بدون بک‌اند** از سایت واقعی فروشگاه «برازنده» — همان تمپلیت‌ها، همان CSS/JS اصلی، همان هدر/فوتر/منوی پایین، فقط با داده‌های نمونه (فیک) به‌جای دیتابیس واقعی و بدون پنل ادمین.
 
-## چه چیزهایی داخلش هست؟
-- ۳۲ صفحه HTML رندرشده از تمپلیت‌های واقعی جنگوی شما
-- ۲۰ محصول در ۴ دسته‌بندی: شومیز، تیشرت زنانه، پیراهن زنانه، دامن
-- ۲ مقاله تستی کامل در بخش مجله (راهنمای سایز و نگهداری پارچه)
+> 🔗 نسخه‌ی واقعی و فعال سایت (با بک‌اند کامل جنگو) در حال حاضر لایو است.
+> این ریپازیتوری فقط برای نمایش UI/UX و کدهای فرانت‌اند ساخته شده.
+
+## 🖥️ دمو
+[لینک GitHub Pages را اینجا اضافه کن — بعد از فعال‌سازی Pages]
+
+## ✨ ویژگی‌ها
+- ۳۲ صفحه‌ی HTML رندرشده از تمپلیت‌های واقعی جنگوی سایت
+- ۱۲ محصول نمونه در دسته‌بندی‌های مختلف (شومیز، تیشرت زنانه، پیراهن زنانه، دامن)
+- مقالات کامل در بخش مجله (راهنمای سایز، نگهداری پارچه)
 - پروفایل کامل کاربر نمونه: سفارش‌ها، آدرس‌ها، تیکت‌های پشتیبانی، اعلان‌ها
-- عکس‌های واقعی محصولات، بنرها، کاور مقالات و آواتار پروفایل (از Unsplash، رایگان)
+- صفحات کامل فروشگاهی: سبد خرید، ورود/ثبت‌نام، سوالات متداول، تماس با ما، قوانین
+- طراحی کاملاً واکنش‌گرا (ریسپانسیو) و راست‌به‌چپ (RTL)
+- عکس‌های واقعی محصولات، بنرها، کاور مقالات و آواتار پروفایل
 
-## نحوه ساخت این نسخه
-تمپلیت‌های اصلی Django شما (`base.html`, `core/home.html`, `products/list.html` و `detail.html`, `accounts/profile.html`, `blog/list.html` و `detail.html` و غیره) با موتور Jinja2 و داده‌های نمونه رندر شدند تا خروجی HTML نهایی، دقیقاً همان مارک‌آپ و استایل سایت واقعی شما را داشته باشد.
+## 🛠️ ساختار فنی
+```
+├── index.html, products.html, product-1..12.html   → صفحات محصولات و فروشگاه
+├── cart.html, login.html, profile.html              → سبد خرید و حساب کاربری
+├── blog.html, blog-*.html                           → مجله و مقالات
+├── about.html, contact.html, faq.html, terms.html   → صفحات اطلاعاتی
+├── assets/
+│   ├── css/main.css      → استایل اصلی سایت
+│   ├── js/main.js        → منطق فرانت‌اند (تعامل‌ها، منوها و...)
+│   ├── data/             → داده‌های JSON نمونه (بنرها و...)
+│   ├── products/, banner/, logo/, fonts/
+```
 
-## نکات مهم
-- چون این نسخه بک‌اند واقعی ندارد، اکشن‌هایی مثل «افزودن به سبد خرید»، «ثبت نظر»، «پرداخت» و... درخواست شبکه می‌فرستند ولی چون سرور واقعی پشت‌شان نیست، پاسخ موفق نمی‌گیرند (رفتار خودِ سایت در حالت قطع اتصال به سرور).
-- عکس محصولات، بنرها، کاور مقالات و آواتار پروفایل با عکس‌های واقعی از Unsplash (رایگان و بدون کپی‌رایت) جایگزین شدند و به‌صورت لینک مستقیم (hotlink) از سرور Unsplash بارگذاری می‌شوند — نیازی به آپلود فایل عکس در ریپازیتوری نیست. برای نسخه‌ی نهایی و برند واقعی، بهتر است این‌ها را با عکس‌های واقعی محصولات خودتان جایگزین کنید (مسیرها در `build/dataset.py` قابل تغییرند).
-- داده‌های نمونه (محصولات، مقالات، پروفایل) در `build/dataset.py` (فایل‌های ساخت، جدا از خروجی) تعریف شده‌اند؛ خودِ فایل‌های HTML خروجی نهایی و ایستا هستند.
+## ⚙️ نحوه ساخت این نسخه
+تمپلیت‌های اصلی Django (`base.html`, `core/home.html`, `products/list.html` و `detail.html`, `accounts/profile.html`, `blog/list.html` و `detail.html` و غیره) با موتور Jinja2 و داده‌های نمونه رندر شدند تا خروجی HTML نهایی، دقیقاً همان مارک‌آپ و استایل سایت واقعی را داشته باشد.
 
-## آپلود روی GitHub Pages
+## ⚠️ نکات مهم
+- چون این نسخه بک‌اند واقعی ندارد، اکشن‌هایی مثل «افزودن به سبد خرید»، «ثبت نظر»، «پرداخت» و... درخواست شبکه می‌فرستند ولی چون سرور واقعی پشت‌شان نیست، پاسخ موفق نمی‌گیرند.
+- عکس محصولات، بنرها، کاور مقالات و آواتار پروفایل از Unsplash (رایگان و بدون کپی‌رایت) و به‌صورت hotlink بارگذاری می‌شوند.
+- داده‌های نمونه در `build/dataset.py` تعریف شده‌اند (جدا از خروجی نهایی)؛ خودِ فایل‌های HTML، ایستا و نهایی هستند.
+
+## 🚀 آپلود روی GitHub Pages
 ```bash
 git init
 git add .
 git commit -m "Static UI showcase"
 git branch -M main
-git remote add origin https://github.com/USERNAME/REPO.git
+git remote add origin https://github.com/USERNAME/barazandeh-tan.git
 git push -u origin main
 ```
-سپس در گیت‌هاب: Settings > Pages > Source: `Deploy from a branch` > Branch: `main` > Folder: `/ (root)` > Save.
+سپس در گیت‌هاب: `Settings > Pages > Source: Deploy from a branch > Branch: main > Folder: / (root)` را انتخاب کن.
 
-آدرس نهایی: `https://USERNAME.github.io/REPO/`
+آدرس نهایی: `https://USERNAME.github.io/barazandeh-tan/`
+
+---
+
+## English
+
+Static, backend-free UI showcase of the **Barazandeh** online fashion store. The real production site runs on Django with a full backend and admin panel — this repo renders the same templates, CSS, and JS with sample data, for a clean front-end demo on GitHub Pages.
+
+**Includes:** 32 rendered HTML pages, 12 sample products across categories (blouses, women's t-shirts, dresses, skirts), a full blog section, a sample user profile (orders, addresses, support tickets, notifications), cart/login/FAQ/contact/terms pages — fully responsive, RTL layout.
+
+Since there's no real backend, actions like "add to cart" or "submit review" fire network requests that won't succeed (same as the live site with no server connection). Product/banner/avatar images are hotlinked from Unsplash.
